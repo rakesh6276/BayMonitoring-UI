@@ -1,0 +1,80 @@
+.theadstyle th{
+    text-align: center;
+}
+
+.theadstyle {
+    background: darkslategray;
+color: snow;
+
+}
+
+.theadstyle tr th{
+    cursor: pointer;
+}
+.mySearch:focus {
+    width: 50%;
+}
+.searchfont{
+    border-radius: 20px;
+    width: 38%;
+    float: right;
+   
+
+border: 2px solid #ccc;
+
+height: 37px;
+padding: 12px 20px 12px 40px;
+
+outline: none;
+}
+
+.headingsss{
+   
+    margin: 16px;
+    border: 1px solid white;
+    padding: 20px;
+    box-shadow: 2px 3px 15px 2px #ccc;    
+}
+.tbodystyle{
+    color:#02111dc4;
+        font-family: Bree Serif;
+    }
+    .headingStyle{
+      
+        font-weight: bold;
+        color: darkcyan;
+        font-size:20px;
+    }
+    .portlet-title{
+        margin: 33px 0px 23px 0px;
+    }
+    .adddelete{
+        background: #599bb3bd;
+    font-size: 15px;
+    font-weight: bolder;
+    outline: none;
+    height: 42px;
+    border-radius: 26px;
+    float: right;
+    margin-right: 22px;
+    }
+
+    .assign{
+        margin:20px;
+        background:#599bb3bd;
+        font-weight:bold;
+        color:white;
+        font-size:15px;
+    }
+    .green{
+        background: #4681b4d6;
+    color: white;
+    width: 73px;
+    font-weight: bold;
+    }
+    .default{
+        background: #db4b14cc;
+        color: white;
+        width: 73px;
+        font-weight: bold;
+    }
