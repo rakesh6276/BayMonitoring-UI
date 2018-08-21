@@ -404,3 +404,38 @@
   .maintenance:hover{
     background: #b9d7f8;
   }
+
+  @media (min-width: 1800px) and (max-width: 2000px) {
+    
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        left: -95px;
+        right: 0;
+        background-color: #008cba;
+        overflow: hidden;
+        width: 401px;
+        height:100%;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        -webkit-transition: .3s ease;
+        transition: .3s ease;
+        margin: 13px 0 0 40px;
+   }
+   
+   #photpanel img {
+       width: 399px;
+       height: 279px;
+       margin: 0 0 0 -70px;
+       -webkit-box-shadow: 1px 3px 24px 0 #00000057;
+       box-shadow: 1px 3px 24px 0 #00000057;
+       background: #20446f;
+       color: snow;
+       text-align: center;
+       font-size: 26px;
+       font-weight: 700;
+       font-family: cursive;
+       font-variant: petite-caps;
+       letter-spacing: 5px;
+   }
+}
