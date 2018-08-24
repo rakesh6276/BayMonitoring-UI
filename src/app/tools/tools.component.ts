@@ -63,6 +63,7 @@ baytools:BayUpdates = new BayUpdates();
 usersid:any;
 totaldetails:any;
 imageToBackend:any=null;
+usersAssigned:any;
 
 
 // settings = {
@@ -270,8 +271,18 @@ assignuserstool(toolusers: TemplateRef<any>,tooldetails){
   console.log(tooldetails.id,"this is tool users");
   console.log(tooldetails,"all tool details i want");
   this.tools=tooldetails;
+  this._dashserve.sendIdGetUsers(tooldetails.id).subscribe(data=>{
+  this.toolsusers = data;
+  console.log('USER-RESPONSE',this.toolsusers);
+
+  })
+
+
+
   this.modalRef=this._modalservice.show(toolusers,{class:'modal-lg'})
 }
+
+
 
 toolassignusers(details,id){
   console.log(details,id);
@@ -285,18 +296,22 @@ toolassignusers(details,id){
    console.log(userobjects,"USER IDS");
 
    this._dashserve.toolassignusers(userobjects,id).subscribe(data=>{
-     console.log(data);
+     console.log('dadadadada',data);
    });
 
 }
 projectstool(names){
-  console.log(names.id,"Project Id");
+  console.log(names,"Project Id");
   this.toolsprojects=names;
 
 }
 assignprojecttool(toolprojects:TemplateRef<any>,tooldetails){
   console.log(tooldetails.id,"details of tools");
   this.tools=tooldetails;
+  this._dashserve.sendIdGetProjects(tooldetails.id).subscribe(data=>{
+    console.log("PROJECTS-RESPONSE",data);
+    this.toolsprojects = data;
+  });
   this.modalRef=this._modalservice.show(toolprojects,{class:'modal-lg'})
 
 }

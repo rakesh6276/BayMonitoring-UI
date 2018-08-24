@@ -347,7 +347,7 @@
                        <span class="input-group-addon"><i class="material-icons" style="font-size: 17px;color: black;">create</i></span>
                        <input type="text" class="form-control" name="baynumber" [(ngModel)]="addtools.bay_number" placeholder="Enter bay number" required> 
                    </div>
-                   <p style="margin-top: 10px;
+                   <!-- <p style="margin-top: 10px;
                    font-weight: bold;">Upload Image<span 
                    style="color: red;">*</span>
                    </p>
@@ -365,12 +365,12 @@
                             <button class="" 
                             (click)="uploadToolImage(baytools)">
                             Upload</button>
-                            <!-- <i class="fa fa-wrench" 
+                            <i class="fa fa-wrench" 
                             style="font-size: 13px;color: black;">
-                         </i> -->
+                         </i>
                      </span>
                          
-                   </div>
+                   </div> -->
                    
                     <div id="selectMargin">
                     Select Bay
@@ -502,20 +502,19 @@
                 <div class="modal-body">
                     <div class="portlet box cblue">
                             <div class="portlet-title">
-                                <div class="caption">
-                                    <i class="fa fa-users"></i> <b>Users -</b>
-                                    <br> <span class="upercase" style="color:#1a7ecfc4;
-                                    font-family: Bree Serif;" >{{tools.name}}</span>
+                                <div class="caption mycaption">
+                                    <i class="fa fa-users"></i> <b>Users</b>
+                                    <br> <span class="upercase">{{tools.name}}</span>
                                 </div>
                             </div>
                     </div>
-                 <div class="portlet-body">
+                 <div class="portlet-body icon-body">
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <!-- <div class="portlet light bordered"> -->
                                 <!-- <div class="portlet-title"> -->
                                     <div class="caption">
-                                        <span class="caption-subject bold font-blue-hoki uppercase"><b> Assigned Users</b>  </span>
+                                        <span class="caption-subject bold font-blue-hoki uppercase"><p style="font-family: Bree serif;font-size: 18px;"> Assigned Users</p>  </span>
                                     </div>
                                 <!-- </div> -->
                                 <!-- <div class="portlet-body"> -->
@@ -523,14 +522,15 @@
                                         <!-- <ul class="feeds"> -->
                                             <li *ngFor="let toolusersdetails of toolsusers" style="list-style: none;">
                                                         <!-- <div class="cont-col1 "> -->
-                                                            <div class="col-md-4" >
-                                                            <div class="label label-sm label-info">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                        </div>
+                                                            <!-- <div class="col-md-4" > -->
+                                                            
+                                                        <!-- </div> -->
                                                         <!-- <div class="cont-col2"> -->
-                                                        <div class="col-md-8">
-                                                           {{toolusersdetails.first_name }} &nbsp;{{  toolusersdetails.last_name}}
+                                                        <div class="col-md-12 icon-margin">
+                                                                <div class="label label-sm label-info">
+                                                                        <i class="fa fa-user"></i>
+                                                                    </div>
+                                                           {{toolusersdetails.first_name}} &nbsp;{{toolusersdetails.last_name}}
                                                            
                                                         </div>
                                             </li>
@@ -543,7 +543,7 @@
                             <div class="portlet light bordered">
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <span class="caption-subject bold font-blue-hoki uppercase"><b>Assign Users</b>  </span>
+                                        <span class="caption-subject bold font-blue-hoki uppercase"><p style="font-family: Bree serif; font-size: 18px;">Assign Users</p>  </span>
                                     </div>
                                 </div>
                                 <div class="portlet-body form">
@@ -556,8 +556,9 @@
                                         <select name="usertool"  class="form-control" [(ngModel)]="usertool"  multiple (change)="userstool(usertool)">
                                             <option value="" disabled>Choose Users</option>
                                             <option *ngFor="let usertool of selectuserstool" [ngValue]="usertool">
-                                            {{usertool.first_name   }}&nbsp;{{    usertool.last_name}}
+                                            {{usertool.first_name}}&nbsp;{{usertool.last_name}}
                                             </option>
+                                            
                                         </select>
                                     </div>
                                     <div class="form-actions noborder">
@@ -584,20 +585,19 @@
                 <div class="modal-body">
                     <div class="portlet box cblue">
                             <div class="portlet-title">
-                                <div class="caption">
+                                <div class="caption mycaption">
                                     <i class="fa fa-users"></i> <b>Users -</b>
-                                    <br> <span class="upercase" style="color:#02111dc4;
-                                    font-family: Bree Serif;" >{{tools.name}}</span>
+                                    <br> <span class="upercase">{{tools.name}}</span>
                                 </div>
                             </div>
                     </div>
-                 <div class="portlet-body">
+                 <div class="portlet-body icon-body">
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <!-- <div class="portlet light bordered"> -->
                                 <!-- <div class="portlet-title"> -->
                                     <div class="caption">
-                                        <span class="caption-subject bold font-blue-hoki uppercase"><b> Assigned Projects</b>  </span>
+                                        <span class="caption-subject bold font-blue-hoki uppercase"><p style="font-family: Bree serif;font-size: 18px;"> Assigned Projects</p>  </span>
                                     </div>
                                 <!-- </div> -->
                                 <!-- <div class="portlet-body"> -->
@@ -605,27 +605,28 @@
                                         <!-- <ul class="feeds"> -->
                                             <li *ngFor="let projectsdetails of toolsprojects" style="list-style: none;">
                                                         <!-- <div class="cont-col1 "> -->
-                                                            <div class="col-md-4" >
-                                                            <div class="label label-sm label-info">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                        </div>
+                                                            <!-- <div class="col-md-4" > -->
+                                                            
+                                                        <!-- </div> -->
                                                         <!-- <div class="cont-col2"> -->
-                                                        <div class="col-md-8">
-                                                           {{projectsdetails.name }}
+                                                        <div class="col-md-12 icon-margin">
+                                                                <div class="label label-sm label-info">
+                                                                        <i class="fa fa-user"></i>
+                                                                    </div>
+                                                           {{projectsdetails.project_name}}{{projectsdetails.name}}
                                                            
                                                         </div>
                                             </li>
                                         <!-- </ul> -->
                                     </div>
-                                <!-- </div> -->
+                                <!-- </div> --> 
                             <!-- </div> -->
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="portlet light bordered">
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <span class="caption-subject bold font-blue-hoki uppercase"><b>Assign Users</b>  </span>
+                                        <span class="caption-subject bold font-blue-hoki uppercase"><p style="font-family: Bree serif;font-size: 18px;">Assign Users</p>  </span>
                                     </div>
                                 </div>
                                 <div class="portlet-body form">
@@ -638,12 +639,12 @@
                                         <select name="usertool"  class="form-control" [(ngModel)]="toolprojectsdetails"  multiple (change)="projectstool(toolprojectsdetails)">
                                             <option value="" disabled>Choose Users</option>
                                             <option *ngFor="let toolprojectsdetails of selectprojects" [ngValue]="toolprojectsdetails">
-                                            {{toolprojectsdetails.name  }}
+                                            {{toolprojectsdetails.name}}
                                             </option>
                                         </select>
                                     </div>
                                     <div class="form-actions noborder">
-                                        <button type="button "  (click)="toolassignprojects(toolprojectsdetails,tools.id);modalRef.hide()" class="btn assign">Assign</button>
+                                        <button type="button" (click)="toolassignprojects(toolprojectsdetails,tools.id);modalRef.hide()" class="btn assign">Assign</button>
                                     </div>
                                 </div>
                             </div>
