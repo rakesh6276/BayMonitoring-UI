@@ -13,7 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class DataService {
 
 
-  apiRoot: string = "http://14.141.47.12:8871";
+  apiRoot: string = "http://152.135.122.61:8871";
 
   //apiRoot: string = "http://152.135.122.61:8871";
   

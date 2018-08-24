@@ -18,7 +18,7 @@ export class ToolcatagoryComponent implements OnInit {
 //   _quaterLab:any;
   
 //   idToken = localStorage.getItem('csrftoken');
-apiRoot: string = "http://14.141.47.12:8871";
+apiRoot: string = "http://152.135.122.61:8871";
 //  apiRoot: string = "http://152.135.122.61:8871";
 //options = { headers: new HttpHeaders({'Authorization': 'JWT '+ this.cookie.get('csrftoken')}) };
   
