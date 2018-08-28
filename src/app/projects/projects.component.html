@@ -21,14 +21,14 @@
                 </div>
                 
             </div>
-            <div class="portlet-body">
+            <div class="portlet-body" style="margin-top: 30px;">
                 <div class="table-scrollable">
                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                     <thead class="theadstyle">
                     <tr>
-                        <th>
+                        <!-- <th>
                             <span class="glyphicon glyphicon-check"></span>
-                        </th>
+                        </th> -->
                         <th>Project Name</th>
                         <th>Description</th>
                         <th>Users</th>
@@ -37,17 +37,16 @@
                     </thead>
                     <tbody class="tbodystyle text-center">
                       <tr *ngFor="let projects of getprojects | filter:term | 
-                      orderBy: order:reverse:'case-insensitive' |
-                       paginate: {itemsPerPage: pageSize,
+                        paginate: {itemsPerPage: pageSize,
                         currentPage: p,totalItems: total};">
                    
                         <!-- <tr class="odd gradeX" dir-paginate="project in Projects | filter:q | itemsPerPage: pageSize" current-page="currentPage" pagination-id="ProjectsPagination"> -->
-                        <td>
+                        <!-- <td>
                             <input type="checkbox" ng-click="selectProject(project.id,project.select)" ng-model="project.select" ng-checked="selectAll">
-                        </td>
-                         <td>{{ projects.name }}</td>                 
-                        <td>{{ projects.description}}</td> 
-                        <td><span class="btn"  (click)="assignusers(template,projects)"><i class="glyphicon glyphicon-user"></i> Users</span></td>
+                        </td> -->
+                         <td>{{projects.name}}</td>                 
+                        <td>{{projects.description}}</td> 
+                        <td><span class="btn" (click)="assignusers(template,projects)"><i class="glyphicon glyphicon-user"></i> Users</span></td>
                         <td>
                             <span class="btn btn-outline btn-circle btn-sm "  (click)="editproject(projectedit,projects)"><i class="fa fa-edit"></i> Edit</span>
                             <!--<span class="btn btn-outline btn-circle btn-sm green-meadow"  ng-click="assign(project)"><i class="fa fa-users"></i>Assign Users</span>-->
@@ -88,19 +87,19 @@
                           
                                 <div class="form-body">
                                     <div class="form-group form-md-line-input" ng-class="{'has-error': itemForm.tname.$error.required (!itemForm.$pristine || itemForm.$submitted)}">
-                                        <input type="text" class="form-control" name="pname"  placeholder="Enter your name" [(ngModel)]="addproject.name" >
-                                        <label for="project_name">Project Name<span class="required"> * </span></label>
+                                        <input type="text" class="form-control" 
+                                        name="pname"  placeholder="Enter your name" 
+                                        [(ngModel)]="addproject.name" >
+                                        <label>Project Name<span class="required"> * </span></label>
                                     </div>
                                     <!-- <p class="help-block">This field is required</p> -->
                                     <div class="form-group form-md-line-input">
                                         <textarea id="project_description" class="form-control" maxlength="225" rows="2" placeholder="Enter the Project Description" [(ngModel)]="addproject.description" ></textarea>
-                                        <label for="project_description">Project Description</label>
-                                        <span class="help-block">Enter the project description...</span>
+                                        <label>Project Description</label>
+                                        <!-- <span class="help-block">Enter the project description...</span> -->
                                     </div>
-              
-              
                                     <div class="modal-footer" style="text-align: center;">
-                                        <button type="submit" class="btn btn-success" (click)="saveNewProjects(addproject)" style="margin-right: 15px;">Submit</button>
+                                        <button type="submit" class="btn btn-success" (click)="saveNewProjects(addproject);newproject.hide()" style="margin-right: 15px;">Submit</button>
                                 
                                         <button class="btn btn-danger" (click)="newproject.hide()">Cancel</button>
                                       </div>
@@ -118,7 +117,9 @@
 
 
 
-        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal fade" id="login-modal" 
+        tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" style="display: none;">
             <div class="modal-dialog">
                   <div class="loginmodal-container">
                       <h1>Login to Your Account</h1><br>
@@ -136,32 +137,30 @@
             </div>
 
 <ng-template #template>
-    <div class="modal-header"
-            style="    background: steelblue;
-            text-align: center;
-            color: white;">
-              <h4 class="modal-title pull-left">Assign Users</h4>
-            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-            </button>
+    <div class="modal-header mymodal-header">
+              <h3 class="modal-title">Assign Users<button type="button" 
+                class="close pull-right" aria-label="Close" 
+                (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+                </button></h3>
+            
              </div>
     <div class="modal-body">
         <div class="portlet box cblue">
                 <div class="portlet-title">
-                    <div class="caption">
-                        <i class="fa fa-users"></i> <b>Users -</b>
-                        <br> <span class="upercase" style="color:#02111dc4;
-                        font-family: Bree Serif;" >{{projectdetails.name}}</span>
+                    <div class="caption mycaption">
+                        <i class="fa fa-users"></i> <b>Users</b>
+                        <br> <span class="upercase">{{projectdetails.name}}</span>
                     </div>
                 </div>
         </div>
-     <div class="portlet-body">
+     <div class="portlet-body icon-body">
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <!-- <div class="portlet light bordered"> -->
                     <!-- <div class="portlet-title"> -->
                         <div class="caption">
-                            <span class="caption-subject bold font-blue-hoki uppercase"><b> Assigned Users</b>  </span>
+                            <span class="caption-subject bold font-blue-hoki uppercase"><p style="font-family: Bree serif;font-size: 18px;"> Assigned Users</p>  </span>
                         </div>
                     <!-- </div> -->
                     <!-- <div class="portlet-body"> -->
@@ -169,16 +168,14 @@
                             <!-- <ul class="feeds"> -->
                                 <li *ngFor="let usersdetails of usersob" style="list-style: none;">
                                             <!-- <div class="cont-col1 "> -->
-                                                <div class="col-md-4" >
+                                                <div class="col-md-12 icon-margin">
                                                 <div class="label label-sm label-info">
                                                     <i class="fa fa-user"></i>
                                                 </div>
+                                                    {{usersdetails.first_name}}&nbsp; {{usersdetails.last_name}}
                                             </div>
                                             <!-- <div class="cont-col2"> -->
-                                            <div class="col-md-8">
-                                               {{ usersdetails.first_name }}&nbsp; {{  usersdetails.last_name  }}
-                                               
-                                            </div>
+                                            
                                 </li>
                             <!-- </ul> -->
                         </div>
@@ -189,7 +186,7 @@
                 <div class="portlet light bordered">
                     <div class="portlet-title">
                         <div class="caption">
-                            <span class="caption-subject bold font-blue-hoki uppercase"><b>Assign Users</b>  </span>
+                            <span class="caption-subject bold font-blue-hoki uppercase"><p style="font-family: Bree serif; font-size: 18px;">Assign Users</p>  </span>
                         </div>
                     </div>
                     <div class="portlet-body form">
@@ -199,34 +196,36 @@
                                     <mat-option *ngFor="let users of selectusers" [ngValue]="users.first_name"> {{users.first_name}}{{users.last_name}}</mat-option>
                               </mat-select> -->
                              
-                            <select name="users"  class="form-control" [(ngModel)]="users"  multiple (change)="addusers(users)">
+                            <select name="users"  class="form-control myselect-style" [(ngModel)]="users"  multiple (change)="addusers(users)">
                                 <option value="" disabled>Choose Users</option>
-                                <option *ngFor="let users of selectusers" [ngValue]="users">
-                                {{  users.first_name   }} &nbsp;{{    users.last_name  }}
-                                </option>
+                                <option *ngFor="let users of selectusers" [ngValue]="users">{{users.first_name}}&nbsp;{{users.last_name}}</option>
                             </select>
                         </div>
-                        <div class="form-actions noborder">
-                            <button type="button "  (click)="assign(users,projectdetails.id);modalRef.hide()" class="btn assign">Assign</button>
-                        </div>
+                        <!-- <div class="form-actions noborder">
+                            <button type="button" (click)="assign(users,projectdetails.id);modalRef.hide()" class="btn">Assign</button>
+                        </div> -->
                     </div>
+                    
                 </div>
             </div>
+                    <div class="col-md-12 bottom-button">
+                        <button class="btn myButton" (click)="assign(users,projectdetails.id);modalRef.hide()">Assign</button>
+                    </div>
         </div>
 
     </div>
+    
             </div>
 </ng-template>
 
 <ng-template #projectedit>
-    <div class="modal-header"
-            style="    background: steelblue;
-            text-align: center;
-            color: white;">
-            <i class="icon-pencil"></i><h4 class="modal-title pull-left">Edit No project &nbsp;&nbsp;{{ &nbsp;projectdetails.id }}</h4>
-            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-            </button>
+    <div class="modal-header mymodal-header">
+            <i class="icon-pencil"></i>
+            <h3 class="modal-title">{{projectdetails.name}}<button type="button" class="close pull-right" 
+                aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+                </button></h3>
+            
      </div>
     <div class="modal-body" style=" height: 364px;">
 

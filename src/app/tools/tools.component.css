@@ -12,7 +12,7 @@ color: dimgrey;
 
 }
 
-.mycaption{
+/* .mycaption{
     padding: 11px 1px 24px 19px;
     border: 1px solid #0000002b;
     box-shadow: 0px 2px 3px 0px #00000026;
@@ -24,15 +24,15 @@ color: dimgrey;
     color: darkcyan;
     font-family: Bree Serif;
     font-size: 18px;
-}
+} */
 
-select[multiple], select[size] {
+/* select[multiple], select[size] {
     height: 193px;
 }
 
 select[multiple], select[size] option{
     margin: 6px 0px 6px 0px;
-}
+} */
 
 /* .scroller:nth-child(2) {
     margin: 8px 0px 8px 0px;
@@ -44,7 +44,7 @@ select[multiple], select[size] option{
     margin: 8px 0px 8px 0px;
 } */
 
-.icon-margin{
+/* .icon-margin{
     margin: 8px 0px 8px 0px;
     font-family: Bree serif;
 }
@@ -57,7 +57,7 @@ select[multiple], select[size] option{
 .icon-body{
     background: ghostwhite;
     padding: 35px 42px 21px 35px;
-}
+} */
 
 .theadstyle th{
     text-align: center;

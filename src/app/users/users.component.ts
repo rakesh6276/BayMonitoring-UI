@@ -33,10 +33,17 @@ export class UsersComponent implements OnInit {
     })
   }
   saveNewUser(users){
-    console.log(users);
+    console.log('USER FOR REFERENCE',users);
     this._service.saveNewuser(users).subscribe(data=>{
-      this.getusers =data;
-      this.router.navigate(['/users']);
+      // this.getusers=data;
+      // this.router.navigate(['/users']);
+      console.log(data);
+      this._service.getAllusers().subscribe(data=>{
+        console.log(data,"ALL users");
+        this.getusers = data;
+        console.log(this.getusers);
+      })
+
     })
   }
 

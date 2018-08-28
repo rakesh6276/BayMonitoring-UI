@@ -324,13 +324,11 @@
    <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
        <div class="modal-dialog modal-lg">
            <div class="modal-content">
-               <div class="modal-header" style="    background: steelblue;
-               text-align: center;
-               color: white;">
-                 <h4 class="modal-title pull-left">Add Tools</h4>
-                 <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
-                   <span aria-hidden="true">&times;</span>
-                 </button>
+               <div class="modal-header mymodal-header">
+                 <h3 class="modal-title">Add Tools <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button></h3>
+                 
                </div>
            <div class="modal-body">
                    <p style="margin-top: 10px;
@@ -490,14 +488,12 @@
              </ng-template>
 
              <ng-template #toolusers>
-                <div class="modal-header"
-                        style="    background: steelblue;
-                        text-align: center;
-                        color: white;">
-                          <h4 class="modal-title pull-left">Assign Users</h4>
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
+                <div class="modal-header mymodal-header">
+                          <h3 class="modal-title">Assign Users<button type="button" class="close pull-right" 
+                            aria-label="Close" (click)="modalRef.hide()">
+                            <span aria-hidden="true">&times;</span>
+                            </button></h3>
+                        
                          </div>
                 <div class="modal-body">
                     <div class="portlet box cblue">
@@ -553,7 +549,7 @@
                                                 <mat-option *ngFor="let users of selectusers" [ngValue]="users.first_name"> {{users.first_name}}{{users.last_name}}</mat-option>
                                           </mat-select> -->
                                          
-                                        <select name="usertool"  class="form-control" [(ngModel)]="usertool"  multiple (change)="userstool(usertool)">
+                                        <select name="usertool" class="form-control myselect-style" [(ngModel)]="usertool"  multiple (change)="userstool(usertool)">
                                             <option value="" disabled>Choose Users</option>
                                             <option *ngFor="let usertool of selectuserstool" [ngValue]="usertool">
                                             {{usertool.first_name}}&nbsp;{{usertool.last_name}}
@@ -561,11 +557,14 @@
                                             
                                         </select>
                                     </div>
-                                    <div class="form-actions noborder">
-                                        <button type="button "  (click)="toolassignusers(usertool,tools.id);modalRef.hide()" class="btn assign">Assign</button>
-                                    </div>
+                                    <!-- <div class="form-actions noborder">
+                                        <button type="button" (click)="toolassignusers(usertool,tools.id);modalRef.hide()" class="btn assign">Assign</button>
+                                    </div> -->
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-12 bottom-button">
+                            <button class="btn myButton">Assign</button>
                         </div>
                     </div>
             
@@ -573,20 +572,17 @@
                         </div>
             </ng-template>
             <ng-template #toolprojects>
-                <div class="modal-header"
-                        style="    background: steelblue;
-                        text-align: center;
-                        color: white;">
-                          <h4 class="modal-title pull-left">Assign Users</h4>
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
+                <div class="modal-header mymodal-header">
+                          <h3 class="modal-title">Assign Projects<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                            <span aria-hidden="true">&times;</span>
+                            </button></h3>
+                        
                          </div>
                 <div class="modal-body">
                     <div class="portlet box cblue">
                             <div class="portlet-title">
                                 <div class="caption mycaption">
-                                    <i class="fa fa-users"></i> <b>Users -</b>
+                                    <i class="fa fa-users"></i> <b>Users</b>
                                     <br> <span class="upercase">{{tools.name}}</span>
                                 </div>
                             </div>
@@ -614,7 +610,6 @@
                                                                         <i class="fa fa-user"></i>
                                                                     </div>
                                                            {{projectsdetails.project_name}}{{projectsdetails.name}}
-                                                           
                                                         </div>
                                             </li>
                                         <!-- </ul> -->
@@ -626,7 +621,7 @@
                             <div class="portlet light bordered">
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <span class="caption-subject bold font-blue-hoki uppercase"><p style="font-family: Bree serif;font-size: 18px;">Assign Users</p>  </span>
+                                        <span class="caption-subject bold font-blue-hoki uppercase"><p style="font-family: Bree serif;font-size: 18px;">Assign Projects</p>  </span>
                                     </div>
                                 </div>
                                 <div class="portlet-body form">
@@ -636,18 +631,21 @@
                                                 <mat-option *ngFor="let users of selectusers" [ngValue]="users.first_name"> {{users.first_name}}{{users.last_name}}</mat-option>
                                           </mat-select> -->
                                          
-                                        <select name="usertool"  class="form-control" [(ngModel)]="toolprojectsdetails"  multiple (change)="projectstool(toolprojectsdetails)">
-                                            <option value="" disabled>Choose Users</option>
+                                        <select name="usertool" class="form-control myselect-style" [(ngModel)]="toolprojectsdetails"  multiple (change)="projectstool(toolprojectsdetails)">
+                                            <option value="" disabled>Choose Projects</option>
                                             <option *ngFor="let toolprojectsdetails of selectprojects" [ngValue]="toolprojectsdetails">
                                             {{toolprojectsdetails.name}}
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="form-actions noborder">
+                                    <!-- <div class="form-actions noborder">
                                         <button type="button" (click)="toolassignprojects(toolprojectsdetails,tools.id);modalRef.hide()" class="btn assign">Assign</button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-12 bottom-button">
+                            <button class="btn myButton">Assign</button>
                         </div>
                     </div>
             

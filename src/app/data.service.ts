@@ -13,9 +13,9 @@ import { CookieService } from 'ngx-cookie-service';
 export class DataService {
 
 
-  apiRoot: string = "http://152.135.122.61:8871";
+  //apiRoot: string = "http://14.141.47.12:8871";
 
-  //apiRoot: string = "http://152.135.122.61:8871";
+  apiRoot: string = "http://14.141.47.12:8871";
   
   //apiRoot: string = "http://127.0.0.1:8000";
 
@@ -88,6 +88,7 @@ constructor(private http:HttpClient,private cookie:CookieService) {
 
       }).catch(this.handleError);
     }
+
     saveNewProjects(data){
       // console.log(data);
       return this.http.post(this.apiRoot+'/api/projects/',data).map((response:Response)=>{

@@ -58,6 +58,7 @@ export class ProjectsComponent implements OnInit {
       this._service.getAllprojects().subscribe(data =>{
         console.log(data,"this nis wht i want.....");
         this.getprojects=data;
+      });
 
         this._service.getAllusers().subscribe(data=>{
           console.log(data,"this are users");
@@ -66,7 +67,6 @@ export class ProjectsComponent implements OnInit {
         })
 
        
-      })
       // form: FormGroup;
 
       // constructor() {
@@ -91,10 +91,14 @@ export class ProjectsComponent implements OnInit {
   //   return false;
   // }
   saveNewProjects(tooldata){
-    console.log(tooldata);
+    console.log('MYTOOL REFERENCE',tooldata);
     this._newproject.saveNewProjects(tooldata).subscribe(data=>{
-      console.log(data);
-      this.getprojects=data;
+      console.log('MY RESPONSE REFERENCE',data);
+      this._service.getAllprojects().subscribe(data =>{
+        console.log(data,"this nis wht i want.....");
+        this.getprojects=data;
+      });
+
       // this.messageresponse = data;
       // this.openModal(this.messageresponse);
       // this.callAllProjects()

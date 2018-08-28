@@ -19,7 +19,7 @@
                           <input type="text"  [(ngModel)]="term"  id="search" class="form-control mySearch searchfont" placeholder="search..." maxlength="50"> </div>
                       </div>
                       <div class="actions ">
-                              <button type="button" id="delete" class="btn adddelete" ng-if="selectedusers.length === 1"  ng-click="deleteUsers(selectedusers)"><i class="fa fa-trash"></i> Delete</button>
+                              <!-- <button type="button" id="delete" class="btn adddelete" ng-if="selectedusers.length === 1"  ng-click="deleteUsers(selectedusers)"><i class="fa fa-trash"></i> Delete</button> -->
                              
                               <button type="button" id="addProject" class="btn adddelete"  (click)="newuser.show()"><i class="fa fa-plus"></i> Add Users</button>
                              <!-- <a type="button" id="export" class="btn blue-ebonyclay" href="http://115.248.179.170:8871/api/export_user_xls" target="_self" download="status.pdf">Export Excel</a>-->
@@ -36,9 +36,9 @@
                     <table class="table table-striped table-bordered table-hover table-checkable order-column tbodystyle" id="sample_1">
                         <thead>
                         <tr>
-                            <th>
+                            <!-- <th>
                                 <span class="glyphicon glyphicon-check"></span>
-                            </th>
+                            </th> -->
                             <th>Name</th>
                             <th>Group</th>
                             <th>Admin/Owner</th>
@@ -48,12 +48,11 @@
                         </thead>
                         <tbody>
                           <tr *ngFor="let user of getusers | filter:term | 
-                          orderBy: order:reverse:'case-insensitive' |
-                           paginate: {itemsPerPage: pageSize,
+                            paginate: {itemsPerPage: pageSize,
                             currentPage: p,totalItems: total};">
-                            <td>
+                            <!-- <td>
                                 <input type="checkbox" (click)="selectuser(user.id,user.select)" [(ngModel)]="user.select">
-                            </td>
+                            </td> -->
                             <td value="tool name">{{ user.first_name }} {{user.last_name}}</td>
                             <td>{{ user.group }}</td>
                             <td>{{ user.is_admin }}</td>
@@ -82,13 +81,10 @@
   <div bsModal #newuser="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
-              <div class="modal-header" style="background: steelblue;
-              text-align: center;
-              color: white;">
-                  <h4 class="modal-title pull-left">Add Users</h4>
-                 <button type="button" class="close pull-right" (click)="newuser.hide()" aria-label="Close">
-                      <span aria-hidden="true">&times;</span> 
-                  </button>
+              <div class="modal-header mymodal-header">
+                  <h3 class="modal-title">Add Users<button type="button" class="close pull-right" (click)="newuser.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span> 
+                </button></h3>
               </div>
               <form #heroForm="ngForm">
               <div class="modal-body">
@@ -98,20 +94,26 @@
                               <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
                                   <div class="form-body">
                                       <div class="form-group form-md-line-input" >
-                                          <label for="rfid">RFID<span class="required"> * </span></label>
-                                          <input type="text" class="form-control" name="urfid"  id="rfid" placeholder="Enter the RFID" [(ngModel)]="users.rfid">
+                                          <label>RFID<span class="required"> * </span></label>
+                                          <input type="text" class="form-control" 
+                                          name="urfid"  id="rfid" 
+                                          placeholder="Enter the RFID" [(ngModel)]="users.rfid">
                                       </div>
                                       <!-- <p class="help-block" ng-show="userForm.urfid.$error.required && (!userForm.$pristine || userForm.$submitted)">This field is required</p> -->
   
                                       <div class="form-group form-md-line-input">
-                                          <label for="user_fname">First Name<span class="required"> * </span></label>
-                                          <input type="text" class="form-control" name="ufname" id="user_fname" placeholder="Enter First Name"  [(ngModel)]="users.first_name" >
+                                          <label>First Name<span class="required"> * </span></label>
+                                          <input type="text" class="form-control" 
+                                          name="ufname" id="user_fname" 
+                                          placeholder="Enter First Name"  
+                                          [(ngModel)]="users.first_name" >
                                       </div>
                                       <!--<p class="help-block" ng-show="itemForm.ufname.$error.required && (!itemForm.$pristine || itemForm.$submitted)">This field is required</p>-->
   
                                       <div class="form-group form-md-line-input">
                                           <label for="user_lname">Last Name</label>
-                                          <input type="text" class="form-control" name="ulname" id="user_lname" placeholder="Enter Last Name"  [(ngModel)]="users.last_name">
+                                          <input type="text" class="form-control" name="ulname" id="user_lname" placeholder="Enter Last Name"  
+                                          [(ngModel)]="users.last_name">
                                       </div>
   
                                       <div class="form-group form-md-line-input">
@@ -147,8 +149,8 @@
                                                           <span class="box"></span> Owner </label>
                                                   </div>
                                               </div> -->
-                                              <input type="radio" value="admin" name="admin" [(ngModel)]="users.is_admin"> Admin
-                                              <input type="radio" value="owner" name="owner" [(ngModel)]="users.is_owner"> Owner
+                                              <input type="checkbox"  name="admin" [(ngModel)]="users.is_admin"> Admin
+                                              <input type="checkbox"  name="owner" [(ngModel)]="users.is_owner"> Owner
                                           </div>
                                           </div>
                                       </div>
@@ -158,7 +160,7 @@
                       </div>
   
                       <div class="modal-footer" style="text-align: center;">
-                          <button type="submit" class="btn btn-success" (click)="saveNewUser(users);newuser.hide(); heroForm.reset()" style="margin-right: 15px;">Submit</button>
+                          <button type="submit" class="btn btn-success" (click)="saveNewUser(users);newuser.hide();heroForm.rest()" style="margin-right: 15px;">Submit</button>
   
                           <button class="btn btn-danger" (click)="newuser.hide()">Cancel</button>
                       </div>
