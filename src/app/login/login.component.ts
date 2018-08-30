@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
   
 
   submit(data){
+    console.log(data);
     this._logindata.callLogin(data).subscribe(data =>{
       this.token = data;
       if (this.token.token) {

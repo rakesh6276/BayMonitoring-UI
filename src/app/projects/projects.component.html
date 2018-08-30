@@ -71,13 +71,11 @@
 <div bsModal #newproject="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header" style="    background: steelblue;
-            text-align: center;
-            color: white;">
-              <h4 class="modal-title pull-left">Add Projects</h4>
-              <button type="button" class="close pull-right" (click)="newproject.hide()" aria-label="Close">
+            <div class="modal-header mymodal-header">
+              <h3 class="modal-title">Add Projects<button type="button" class="close pull-right" (click)="newproject.hide()" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
-              </button>
+              </button></h3>
+              
             </div>
         <div class="modal-body">
             <div class="portlet box cblue">
@@ -86,24 +84,62 @@
                         <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
                           
                                 <div class="form-body">
-                                    <div class="form-group form-md-line-input" ng-class="{'has-error': itemForm.tname.$error.required (!itemForm.$pristine || itemForm.$submitted)}">
-                                        <input type="text" class="form-control" 
-                                        name="pname"  placeholder="Enter your name" 
-                                        [(ngModel)]="addproject.name" >
+                                    <form #projectAddForm="ngForm" (ngSubmit)="saveNewProjects(addproject)">
                                         <label>Project Name<span class="required"> * </span></label>
-                                    </div>
-                                    <!-- <p class="help-block">This field is required</p> -->
-                                    <div class="form-group form-md-line-input">
-                                        <textarea id="project_description" class="form-control" maxlength="225" rows="2" placeholder="Enter the Project Description" [(ngModel)]="addproject.description" ></textarea>
-                                        <label>Project Description</label>
-                                        <!-- <span class="help-block">Enter the project description...</span> -->
-                                    </div>
-                                    <div class="modal-footer" style="text-align: center;">
-                                        <button type="submit" class="btn btn-success" (click)="saveNewProjects(addproject);newproject.hide()" style="margin-right: 15px;">Submit</button>
-                                
-                                        <button class="btn btn-danger" (click)="newproject.hide()">Cancel</button>
-                                      </div>
-              
+                                        <div class="form-group form-md-line-input"
+                                         [ngClass]="{
+                                             'has-error': name.invalid && (name.dirty || name.touched),
+                                            'has-success':name.valid && (name.dirty || name.touched)
+                                            }">
+                                            
+                                            <input type="text" 
+                                            class="form-control" 
+                                            name="proj-name" required #name="ngModel"
+                                            placeholder="Enter your name" 
+                                            [(ngModel)]="addproject.name" 
+                                            (ngModelChange)="titleCaseWord(addproject.name)">
+                                            <div *ngIf="name.errors && (name.dirty || name.touched)">
+                                                <p *ngIf="name.errors.required" 
+                                                style="color:#5f0b0bed">Project Name is Required</p>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-group form-md-line-input"
+                                         [ngClass]="{
+                                             'has-error': description.invalid && (description.dirty || description.touched),
+                                            'has-success':description.valid && (description.dirty || description.touched)
+                                            }">
+                                            <label>Project Description</label>
+                                            <textarea 
+                                            id="project_description" 
+                                            name="proj-description" 
+                                            class="form-control" 
+                                            rows="2"
+                                            placeholder="Enter the Project Description" 
+                                            [(ngModel)]="addproject.description" 
+                                            (ngModelChange)="titleCaseWord1(addproject.description)" 
+                                            required 
+                                            minlength="5" 
+                                            #description="ngModel"></textarea>
+                                            <div *ngIf="description.errors && (description.dirty || description.touched)">
+                                                    <p *ngIf="description.errors.required" 
+                                                    style="color:#5f0b0bed">Project Description is Required</p>
+                                                    <p *ngIf="description.errors.minlength" 
+                                                    style="color:#5f0b0bed">Description should be of min 5 characters long</p>
+                                                </div>
+                                            <!-- <span class="help-block">Enter the project description...</span> -->
+                                        </div>
+                                        <div class="modal-footer" style="text-align: center;">
+                                            <button type="submit" 
+                                            class="btn btn-success" 
+                                            (click)="newproject.hide()" 
+                                            [disabled]="projectAddForm.invalid" 
+                                            style="margin-right: 15px;">Submit</button>
+                                    
+                                            <button class="btn btn-danger" 
+                                            (click)="newproject.hide()">Cancel</button>
+                                        </div>
+                                    </form>
                                 </div> 
                         </div>
                     </div>

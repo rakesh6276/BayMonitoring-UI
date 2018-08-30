@@ -85,10 +85,11 @@ export class BayhomeComponent implements OnInit {
           })
 
 
-          this.bay2 =  this._toolsListed.filter(data=>{
-            return data.bay_number==2 && data.is_active == true
+          this.bay2 = this._toolsListed.filter(data=>{
+            return data.bay_number==3 && data.is_active == true
           });
             this.bay2.forEach(function (value) {
+              
             if(value.status === 'IN'){
               $('#bay2').css({fill: "#ffff80"});
             }

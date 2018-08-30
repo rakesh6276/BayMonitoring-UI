@@ -2,12 +2,13 @@ import { Component, OnInit, TemplateRef,Input } from '@angular/core';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { HttpClient } from '@angular/common/http';
 import { PaginationModule, BsModalService, BsModalRef} from 'ngx-bootstrap';
-import { BayUpdates  } from './bayupdates';
+import { BayUpdates } from './bayupdates';
+// import { AddTools } from './bayupdates';
 import { DataService } from '../data.service';
-import { IConsoles,IOwners, AddTools, Swaptools, IToolCat } from '../dashboardhome/consolesInterface';
+import { IConsoles,IOwners,Swaptools, IToolCat, AddTools } from '../dashboardhome/consolesInterface';
 import { ActivatedRoute } from '@angular/router';
 import { BrowserJsonp } from '@angular/http/src/backends/browser_jsonp';
-
+import { FormsModule,FormGroup,FormControl } from '@angular/forms';
 
 interface Tools{
   id:number;
@@ -64,6 +65,9 @@ usersid:any;
 totaldetails:any;
 imageToBackend:any=null;
 usersAssigned:any;
+
+
+
 
 
 // settings = {
@@ -138,7 +142,8 @@ usersAssigned:any;
   private _modalservice:BsModalService,private _dashserve:DataService,private route:ActivatedRoute ) {
 
    }
-   addtools: AddTools = new AddTools();
+
+   addtools:AddTools = new AddTools();
    swaptools:Swaptools = new Swaptools();
    tools :Tools = {} as Tools;
   ngOnInit() {
@@ -251,8 +256,8 @@ callAlltools(){
 
 
 saveNewTools(tooldata){
-  tooldata.image_field = this.imageToBackend;
-  console.log('IMAGE IN SAVE API',this.imageToBackend);
+  // tooldata.image_field = this.imageToBackend;
+  // console.log('IMAGE IN SAVE API',this.imageToBackend);
   console.log(tooldata);
   this._dashserve.saveNewTools(tooldata).subscribe(data=>{
     console.log(data);

@@ -330,14 +330,16 @@
                   </button></h3>
                  
                </div>
+
            <div class="modal-body">
-                   <p style="margin-top: 10px;
+                   <!-- <p style="margin-top: 10px;
                    font-weight: bold;">Tool Name<span 
                    style="color: red;">*</span>
                    </p>
                    <div class="input-group">
                        <span class="input-group-addon"><i class="fa fa-wrench" style="font-size: 13px;color: black;"></i></span>
-                       <input type="text" class="form-control" name="toolname" [(ngModel)]="addtools.name" placeholder="Enter tool name" required>
+                       <input type="text" class="form-control"
+                        name="toolname" [(ngModel)]="addtools.name" placeholder="Enter tool name" required>
                    </div>
                    <p style="margin-top: 10px;
                    font-weight: bold;">Bay Number <span style="color: red;">*</span></p>
@@ -345,30 +347,6 @@
                        <span class="input-group-addon"><i class="material-icons" style="font-size: 17px;color: black;">create</i></span>
                        <input type="text" class="form-control" name="baynumber" [(ngModel)]="addtools.bay_number" placeholder="Enter bay number" required> 
                    </div>
-                   <!-- <p style="margin-top: 10px;
-                   font-weight: bold;">Upload Image<span 
-                   style="color: red;">*</span>
-                   </p>
-                   <div class="input-group">
-                       <span class="input-group-addon">
-                           <i class="fa fa-wrench" 
-                           style="font-size: 13px;color: black;">
-                        </i>
-                    </span>
-                       <input type="file" class="form-control"
-                        name="image" 
-                        (change)="onImageChange($event)"
-                         placeholder="Select an image" required>
-                         <span class="input-group-addon">
-                            <button class="" 
-                            (click)="uploadToolImage(baytools)">
-                            Upload</button>
-                            <i class="fa fa-wrench" 
-                            style="font-size: 13px;color: black;">
-                         </i>
-                     </span>
-                         
-                   </div> -->
                    
                     <div id="selectMargin">
                     Select Bay
@@ -419,14 +397,211 @@
                    <div id="selectMargin">
                        Is_Active
                       <input type="checkbox" [(ngModel)]="addtools.is_active" style="margin-left: 80px;width: 160px;font-size: 12px;">
+                  </div> -->
+
+
+
+
+
+
+
+                  <form #toolsForm="ngForm" (ngSubmit)="saveNewTools(addtools)">
+
+                        <div class="form-group" 
+                             [ngClass]="{
+                            'has-error': name.invalid && (name.dirty || name.touched),
+                            'has-success': name.valid && (name.dirty || name.touched)
+                                        }">
+                    
+                                        <p style="margin-top: 10px;
+                                        font-weight: bold;">Tool Name<span 
+                                        style="color: red;">*</span>
+                                        </p>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-wrench" 
+                                                style="font-size: 13px;color: black;">
+                                            </i>
+                                            </span>
+                                            <input type="text" class="form-control"
+                                             name="toolname" 
+                                             [(ngModel)]="addtools.name" 
+                                             placeholder="Enter tool name" 
+                                             required #name="ngModel">
+                                        </div>
+                                        <div *ngIf="name.errors && (name.dirty || name.touched)">
+                                            <p *ngIf="name.errors.required" style="color:#5f0b0bed">Tool Name is required</p>
+                                        </div>                        
+                    
+                        </div>
+
+                        <div class="form-group" 
+                             [ngClass]="{
+                            'has-error': bay_number.invalid && (bay_number.dirty || bay_number.touched),
+                            'has-success': bay_number.valid && (bay_number.dirty || bay_number.touched)
+                                        }">
+                    
+                                        <p style="margin-top: 10px;
+                                            font-weight: bold;">Bay Number <span style="color: red;">*</span></p>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="material-icons" 
+                                                style="font-size: 17px;color: black;">create</i>
+                                            </span>
+                                            <input type="text" class="form-control" 
+                                            name="baynumber" 
+                                            [(ngModel)]="addtools.bay_number" 
+                                            placeholder="Enter bay number" 
+                                            pattern="^[0-9]{1,4}$"  
+                                            required #bay_number="ngModel"> 
+                                        </div>
+                                        <div *ngIf="bay_number.errors && (bay_number.dirty || bay_number.touched)">
+                                            <p *ngIf="bay_number.errors.required" 
+                                            style="color:#5f0b0bed">Bay Number is required</p>
+                                            <p *ngIf="bay_number.errors.pattern" style="color:#5f0b0bed">
+                                                Only valid numbers are allowed</p>
+                                        </div>                        
+                    
+                        </div>
+                        <div class="form-group" 
+                        [ngClass]="{
+                            'has-error': bay.invalid && (bay.dirty || bay.touched),
+                            'has-success': bay.valid && (bay.dirty || bay.touched)
+                                        }">
+
+                                        <div id="selectMargin">
+                                                Select Consoles
+                                                   <select name="bay" 
+                                                   [(ngModel)]="addtools.bay" 
+                                                   class="form-control" 
+                                                   required #bay="ngModel" 
+                                                   style="margin-left: 136px;width: 160px;font-size: 12px;display: initial;">
+                                                       <option value="" disabled>Choose a Bay</option>
+                                                       <option *ngFor="let state of _postsArray" [ngValue]="state.id">
+                                                       {{ state.name}}
+                                                       </option>
+                                                   </select>
+                                                   <div *ngIf="bay.errors && (bay.dirty || bay.touched)">
+                                                        <p *ngIf="bay.errors.required" 
+                                                        style="color:#5f0b0bed">Console is required
+                                                    </p>
+                                                   </div>
+                                        </div>
+
+                        </div>
+                        <div class="form-group" 
+                        [ngClass]="{
+                            'has-error':tool_owner.invalid && (tool_owner.dirty || tool_owner.touched),
+                            'has-success':tool_owner.valid && (tool_owner.dirty || tool_owner.touched)
+                        }">
+                        <div id="selectMargin">
+                                Select Owners
+                                   <select name="owners" 
+                                   [(ngModel)]="addtools.tool_owner" 
+                                   class="form-control" 
+                                   required #tool_owner="ngModel" 
+                                   style="margin-left: 111px;
+                                   width: 218px;
+                                   font-size: 12px;
+                                   display: initial;">
+                                       <option value="" disabled>
+                                           Choose Owner</option>
+                                       <option 
+                                       *ngFor="let owner of toolownerobj" 
+                                       [ngValue]="owner.id">
+                                       {{owner.email}}
+                                       </option>
+                                   </select>
+                                   <div *ngIf="tool_owner.errors && (tool_owner.dirty || tool_owner.touched)">
+                                        <p *ngIf="tool_owner.errors.required" 
+                                        style="color:#5f0b0bed">Tool Owner is required></p>
+                                   </div>
+                        </div>
+        
+                     
+
+                        </div>
+                        <div class="form-group" 
+                        [ngClass]="{
+                            'has-error':tool_users.invalid && (tool_users.dirty || tool_users.touched),
+                            'has-success':tool_users.valid && (tool_users.dirty || tool_users.touched)
+                        }">
+                            <div id="selectMargin">
+                                Select Users
+                                <select name="users" 
+                                [(ngModel)]="addtools.tool_users" multiple 
+                                class="form-control" required #tool_users="ngModel" 
+                                style="margin-left: 123px;width: 279px;font-size: 12px;display: initial;">
+                                    <option value="" disabled>Choose User</option>
+                                    <option *ngFor="let owner of toolownerobj" [ngValue]="owner.id">
+                                    {{owner.email}}
+                                    </option>
+                                </select>
+                                <div *ngIf="tool_users.errors && (tool_users.dirty||tool_users.touched)">
+                                        <p *ngIf="tool_users.errors.required" 
+                                        style="color:#5f0b0bed">Tool Users are required</p>        
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        <div id="selectMargin">
+                            Select Tool Category
+                               <select name="category" 
+                               [(ngModel)]="addtools.tool_category" 
+                               class="form-control"
+                               style="margin-left: 69px;width: 160px;font-size: 12px;display: initial;">
+                                   <option value="" disabled>Choose Tool Category</option>
+                                   <option *ngFor="let cat of _toolCategory" [ngValue]="cat.id">
+                                   {{cat.category_name}}
+                                   </option>
+                               </select>
+                        </div>
+
+                        
+                        
+                        <p>Tool Status</p>
+                   <div class="input-group">
+                       <span class="input-group-addon">
+            <span class="glyphicon glyphicon-exclamation-sign" 
+            style="font-size: 13px;color: black;"></span>
+                        </span>
+                       <input type="text" 
+                       class="form-control" 
+                       name="toolstatus" 
+                       [(ngModel)]="addtools.status" 
+                       placeholder="Idle" disabled=""
+                       >
+                   </div>
+
+
+                
+                   <div id="selectMargin">
+                       Is_Active
+                      <input type="checkbox"
+                      [(ngModel)]="addtools.is_active" 
+                      
+                      style="margin-left: 80px;width: 160px;font-size: 12px;">
                   </div>
-                   
                   
-                <div class="modal-footer" style="text-align: center;">
+                        
+                        <div class="modal-footer" 
+                        style="text-align: center;">
+                                <button type="submit" 
+                                class="btn btn-success" 
+                                (click)="lgModal.hide();" 
+                                style="margin-right: 15px;" 
+                                [disabled]="toolsForm.invalid">Submit</button>
+                        
+                                <button class="btn btn-danger" (click)="lgModal.hide()">Cancel</button>
+                              </div>
+                    </form>                   
+                  
+                <!-- <div class="modal-footer" style="text-align: center;">
                   <button type="submit" class="btn btn-success" (click)="saveNewTools(addtools);lgModal.hide();" style="margin-right: 15px;">Submit</button>
           
                   <button class="btn btn-danger" (click)="lgModal.hide()">Cancel</button>
-                </div>
+                </div> -->
            </div>
            </div>
            </div>
@@ -564,7 +739,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 bottom-button">
-                            <button class="btn myButton">Assign</button>
+                            <button class="btn myButton" (click)="toolassignusers(usertool,tools.id);modalRef.hide()">Assign</button>
                         </div>
                     </div>
             
@@ -645,7 +820,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 bottom-button">
-                            <button class="btn myButton">Assign</button>
+                            <button class="btn myButton" (click)="toolassignprojects(toolprojectsdetails,tools.id);modalRef.hide()">Assign</button>
                         </div>
                     </div>
             

@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 import { Routes, RouterModule, ActivatedRoute, Router } from '@angular/router';
 import {AddProjects} from './projectsupdates'
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,FormGroup,FormControl,ReactiveFormsModule } from '@angular/forms';
 
 interface Details{
   name:string,
@@ -32,7 +32,7 @@ rfid:string
 export class ProjectsComponent implements OnInit {
   // count:number;
   // abcd: any=[];
-  usersid:any;
+  usersid:any=[];
   selectusers: any;
   modalRef:BsModalRef ;
   _getprojects:any;
@@ -52,6 +52,8 @@ export class ProjectsComponent implements OnInit {
  
   addproject :AddProjects =new AddProjects;
   projectdetails : Details ={} as Details;
+  
+ 
   
   ngOnInit() {
    
@@ -110,7 +112,11 @@ export class ProjectsComponent implements OnInit {
     
     this.projectdetails=details;
     this.modalRef = this._modalservice.show(template ,{class: 'modal-lg'});
-
+    // this._service.sendIdGetUsers(details.id).subscribe(data=>{
+    //   this.usersob = data;
+    //   console.log('USER-RESPONSE',this.usersob);
+    
+    //   })
     
 
   }
@@ -139,39 +145,65 @@ export class ProjectsComponent implements OnInit {
   // }
 
   assign(assigneduser,id){
-    console.log (assigneduser,id);
-      this.abcd=assigneduser;
-     let count ;
-    console.log(Object.keys(assigneduser).length,"this is the fhgskgsssssssssssssssd");
-   console.log(count=Object.keys(this.abcd).length,"it is the lenght stored in variable");
-   console.log(this.abcd[0].id,"this is id of users  aaaaaaaaaaaaaaaa");
-  //  let array = [1,2,3];
-   for (let i = 0; i < count; i++,this.usersid++) {
-    //  console.log(abcd[i].id,"this this this this this ");
-    //  console.log(abcd,"this is ");
-   this.usersid= this.abcd[i];
-   
-   console.log(this.usersid.id,"this is users id only");
+    console.log ("UsersASSIGNED",assigneduser);
+    console.log("PROJECTID",id);
+   for (let i = 0; i < assigneduser.length; i++) {
+   this.usersid.push(assigneduser[i].id);
    }
+   console.log(this.usersid,"this is users id-2 only");
    console.log(id,"this is project id");
-   console.log(this.abcd,"this out of for loop");
-
-   this._service.assignprojects(this.abcd,id).subscribe(data=>{
+   let users_assigned={user_ids:this.usersid};
+   this._service.assignprojects(users_assigned,id).subscribe(data=>{
      console.log(data);
    });
-
   }
+
   editproject(projectedit,projects){
     console.log(projects,"projects details name and description");
     this.projectdetails=projects;
     this.modalRef=this._modalservice.show (projectedit,{class:'modal-lg'})
   }
+
   projectedited(prodet){
     console.log("this is projects tools, or usrd");
     console.log(prodet,'project details changed');
     this._service.projectedited(prodet).subscribe(data=>{
       console.log(data);
     })    
+  }
+
+  // titleCaseWord(word) {
+  //   console.log(word.name)
+  //   return word.name.toUpperCase;
+  // }  
+
+  // titleCaseWord(str) {
+  //   console.log(str);
+  //   return str.toLowerCase().split(' ').map((word)=> {
+  //      return (word.charAt(0).toUpperCase() + word.slice(1));
+  //   }).join(' ');
+  // }
+
+  titleCaseWord(str) {
+    console.log(str);
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+      str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+    }
+    console.log('scs',str.join(' '));
+    this.addproject.name = str.join(' ');
+    // return str.join(' ');
+  }
+  
+  titleCaseWord1(str) {
+    console.log(str);
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+      str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+    }
+    console.log('scs',str.join(' '));
+    this.addproject.description = str.join(' ');
+    // return str.join(' ');
   }
 
 

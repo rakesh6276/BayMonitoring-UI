@@ -31,7 +31,6 @@ export class AddTools {
                 public tool_users:number;
                 public tool_category:number;
                 public status:string = 'ID';
-                public image_field:any;
                 public is_active:Boolean=false; 
     
   }

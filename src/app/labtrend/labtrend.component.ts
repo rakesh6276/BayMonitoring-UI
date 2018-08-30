@@ -170,7 +170,7 @@ console.log(formatDate(new Date()),"this is dsat6e it dbfvpoashvi");
             }
         },
         series: [{
-            name: 'Idel',
+            name: 'Idle',
             data:_iddata,
             color:'rgb(255, 153, 153)'
         }, {
@@ -215,13 +215,13 @@ console.log(formatDate(new Date()),"this is dsat6e it dbfvpoashvi");
                
                 "data": [
                     {
-                        "name": "Idel",
+                        "name": "Idle",
                         "y": idel,
                         color:'rgb(255, 153, 153)'
                         
                     },
                     {
-                        "name": "installatio",
+                        "name": "Installation",
                         "y": install,
                         color:'rgb(255, 230, 128)'
                     },
