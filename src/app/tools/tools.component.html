@@ -568,8 +568,8 @@
             style="font-size: 13px;color: black;"></span>
                         </span>
                        <input type="text" 
+                       name="toolstatus"
                        class="form-control" 
-                       name="toolstatus" 
                        [(ngModel)]="addtools.status" 
                        placeholder="Idle" disabled=""
                        >
@@ -579,7 +579,7 @@
                 
                    <div id="selectMargin">
                        Is_Active
-                      <input type="checkbox"
+                      <input type="checkbox" name="isactive"
                       [(ngModel)]="addtools.is_active" 
                       
                       style="margin-left: 80px;width: 160px;font-size: 12px;">

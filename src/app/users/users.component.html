@@ -86,49 +86,95 @@
                     <span aria-hidden="true">&times;</span> 
                 </button></h3>
               </div>
-              <form #heroForm="ngForm">
+              
               <div class="modal-body">
-                  <!-- <div class="portlet box cblue">
-                      <div class="portlet-body form"> -->
                           <div class="row">
                               <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
-                                  <div class="form-body">
-                                      <div class="form-group form-md-line-input" >
-                                          <label>RFID<span class="required"> * </span></label>
+                                <form #heroForm="ngForm" (ngSubmit)="saveNewUser(users);"> 
+                                <!-- <div class="form-body"> -->
+                                        <label>RFID<span class="required"> * </span></label>
+                                      <div class="form-group form-md-line-input" [ngClass]="{
+                                          'has-error':rfid.invalid && (rfid.dirty || rfid.touched),
+                                          'has-success':rfid.valid && (rfid.dirty || rfid.touched)
+                                      }">
                                           <input type="text" class="form-control" 
                                           name="urfid"  id="rfid" 
-                                          placeholder="Enter the RFID" [(ngModel)]="users.rfid">
+                                          placeholder="Enter the RFID" maxlength="6"
+                                          pattern="^[0-9]{1,8}$" required #rfid="ngModel" 
+                                          [(ngModel)]="users.rfid">
+                                          <div *ngIf="rfid.errors && (rfid.dirty || rfid.touched)">
+                                            <p *ngIf="rfid.errors.required" style="color:#5f0b0bed">RFID is required</p>
+                                            <p *ngIf="rfid.errors.pattern" style="color:#5f0b0bed">RFID should be a 6 digit number</p>
+                                          </div>
                                       </div>
-                                      <!-- <p class="help-block" ng-show="userForm.urfid.$error.required && (!userForm.$pristine || userForm.$submitted)">This field is required</p> -->
-  
-                                      <div class="form-group form-md-line-input">
-                                          <label>First Name<span class="required"> * </span></label>
+                                      <label>First Name<span class="required"> * </span></label>
+                                      <div class="form-group form-md-line-input" [ngClass]="{
+                                        'has-error':first_name.invalid && (first_name.dirty || first_name.touched),
+                                        'has-success':first_name.valid && (first_name.dirty || first_name.touched)
+                                    }">
                                           <input type="text" class="form-control" 
                                           name="ufname" id="user_fname" 
+                                          pattern="^[a-zA-Z ]{4,20}$"
+                                           required #first_name="ngModel"
                                           placeholder="Enter First Name"  
-                                          [(ngModel)]="users.first_name" >
+                                          [(ngModel)]="users.first_name" 
+                                          (ngModelChange)="titleCaseWord1(users.first_name)">
+                                          <div *ngIf="first_name.errors && (first_name.dirty || first_name.touched)">
+                                                <p *ngIf="first_name.errors.required" style="color:#5f0b0bed">First Name is required</p>
+                                                <p *ngIf="first_name.errors.pattern" style="color:#5f0b0bed">First Name should be of 4-20 characters long</p>
+                                              </div>
                                       </div>
-                                      <!--<p class="help-block" ng-show="itemForm.ufname.$error.required && (!itemForm.$pristine || itemForm.$submitted)">This field is required</p>-->
-  
-                                      <div class="form-group form-md-line-input">
-                                          <label for="user_lname">Last Name</label>
-                                          <input type="text" class="form-control" name="ulname" id="user_lname" placeholder="Enter Last Name"  
-                                          [(ngModel)]="users.last_name">
+                                      <label for="user_lname">Last Name</label>
+                                      <div class="form-group form-md-line-input" [ngClass]="{
+                                        'has-error':last_name.invalid && (last_name.dirty || last_name.touched),
+                                        'has-success':last_name.valid && (last_name.dirty || last_name.touched)
+                                    }">
+                                          <input type="text" class="form-control" 
+                                          name="ulname" id="user_lname" 
+                                          placeholder="Enter Last Name" 
+                                          pattern="^[a-zA-Z ]{1,20}$"
+                                           required #last_name="ngModel"  
+                                          [(ngModel)]="users.last_name" 
+                                          (ngModelChange)="titleCaseWord2(users.last_name)">
+                                          <div *ngIf="last_name.errors && (last_name.dirty || last_name.touched)">
+                                                <p *ngIf="last_name.errors.required" style="color:#5f0b0bed">Last Name is required</p>
+                                                <p *ngIf="first_name.errors.pattern" style="color:#5f0b0bed">Last Name should be 1-20 characters long</p>
+                                              </div>
                                       </div>
-  
-                                      <div class="form-group form-md-line-input">
-                                          <label for="user_email">Email<span class="required"> * </span></label>
-                                          <input type="email" class="form-control" name="email" id="user_email" placeholder="Enter Email Address"  [(ngModel)]="users.email">
-                                      <!--<p class="help-block" ng-show="itemForm.email.$error.required && (!itemForm.$pristine || itemForm.$submitted)">This field is required</p>-->
-  
-                                      <div class="form-group form-md-line-input">
-                                          <select name="category" class="form-control"  [(ngModel)]="users.group" style="margin-left: 69px;width: 160px;font-size: 12px;display: initial;">
+                                      <label for="user_email">Email<span class="required"> * </span></label>
+                                      <div class="form-group form-md-line-input" [ngClass]="{
+                                        'has-error':email.invalid && (email.dirty || email.touched),
+                                        'has-success':email.valid && (email.dirty || email.touched)
+                                    }">
+                                          
+                                          <input type="email" class="form-control" 
+                                          name="email" id="user_email" 
+                                          placeholder="Enter Email Address"
+                                          pattern="[^ @]*@[^ @]*"
+                                           required #email="ngModel"
+                                           [(ngModel)]="users.email">
+                                           <div *ngIf="email.errors && (email.dirty || email.touched)">
+                                                <p *ngIf="email.errors.required" style="color:#5f0b0bed">Email is required</p>
+                                                <p *ngIf="email.errors.pattern" style="color:#5f0b0bed">Please enter a valid email</p>
+                                           </div>
+                                    </div>
+                                    <label style="position: absolute;
+                                    margin: 0px 0px 10px 0px;">Group *</label>
+                                    <div class="form-group form-md-line-input" style="margin: 53px 0px 29px 0px;" [ngClass]="{
+                                        'has-error':group.invalid && (group.dirty || group.touched),
+                                        'has-success':group.valid && (group.dirty || group.touched)
+                                    }">
+                                          <select name="category" class="form-control"
+                                            [(ngModel)]="users.group" required #group="ngModel"
+                                             style="width: 160px;
+                                             font-size: 12px;display: initial;">
                                               <option value="" disabled>Group</option>
-                                              <option *ngFor="let group of groups" [ngValue]="group.id">
+                                              <option *ngFor="let group of groups" 
+                                              [ngValue]="group.id">
                                               {{group.name}}
                                               </option>
                                           </select>
-                                          <label>Group</label>
+                                          
                                       </div>
                                       <div class="form-group form-md-radios has-success">
                                           <div class="row">
@@ -149,26 +195,44 @@
                                                           <span class="box"></span> Owner </label>
                                                   </div>
                                               </div> -->
-                                              <input type="checkbox"  name="admin" [(ngModel)]="users.is_admin"> Admin
-                                              <input type="checkbox"  name="owner" [(ngModel)]="users.is_owner"> Owner
+                                              <label class="custom-check">Admin
+                                              <input type="checkbox"
+                                               name="admin" 
+                                               [(ngModel)]="users.is_admin">
+                                               <span class="checkmark"></span>
+                                                </label>
+
+                                                <label class="custom-check">Owner
+                                              <input type="checkbox"
+                                               name="owner" 
+                                               [(ngModel)]="users.is_owner">
+                                               <span class="checkmark"></span>
+                                               </label>
                                           </div>
                                           </div>
                                       </div>
-                                  </div>
+
+                                  <!-- </div> -->
                               <!-- </div>
                           </div> -->
+                          <div class="modal-footer" style="text-align: center;">
+                                <button type="submit" 
+                                class="btn btn-success" 
+                                [disabled]="heroForm.invalid"
+                                (click)="newuser.hide();heroForm.rest()"
+                                 style="margin-right: 15px;">Submit</button>
+        
+                                <button class="btn btn-danger" (click)="newuser.hide();$event.preventDefault();">Cancel</button>
+                            </div>
+                         </form>   
                       </div>
   
-                      <div class="modal-footer" style="text-align: center;">
-                          <button type="submit" class="btn btn-success" (click)="saveNewUser(users);newuser.hide();heroForm.rest()" style="margin-right: 15px;">Submit</button>
-  
-                          <button class="btn btn-danger" (click)="newuser.hide()">Cancel</button>
-                      </div>
+                      
   
                   </div>
               </div>
           </div>
-      </form>
+      
       </div>
   </div>
         

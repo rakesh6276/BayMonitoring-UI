@@ -47,6 +47,28 @@ export class UsersComponent implements OnInit {
     })
   }
 
+  titleCaseWord1(str) {
+    console.log(str);
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+      str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+    }
+    console.log('scs',str.join(' '));
+    this.users.first_name = str.join(' ');
+    // return str.join(' ');
+  }
+
+  titleCaseWord2(str) {
+    console.log(str);
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+      str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+    }
+    console.log('scs',str.join(' '));
+    this.users.last_name = str.join(' ');
+    // return str.join(' ');
+  }
+
 
 }
 
