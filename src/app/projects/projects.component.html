@@ -137,7 +137,7 @@
                                             style="margin-right: 15px;">Submit</button>
                                     
                                             <button class="btn btn-danger" 
-                                            (click)="newproject.hide()">Cancel</button>
+                                            (click)="newproject.hide();$event.preventDefault()">Cancel</button>
                                         </div>
                                     </form>
                                 </div> 

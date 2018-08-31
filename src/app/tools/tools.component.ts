@@ -477,6 +477,17 @@ swapTools(data){
     // this.modalRef = this._modalservice.show(temp);
   }
 
+  titleCaseWord(str) {
+    console.log(str);
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+      str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+    }
+    console.log('scs',str.join(' '));
+    this.addtools.name = str.join(' ');
+    // return str.join(' ');
+  }
+
  
 }
 
