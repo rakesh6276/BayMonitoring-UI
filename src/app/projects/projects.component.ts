@@ -62,6 +62,8 @@ export class ProjectsComponent implements OnInit {
         this.getprojects=data;
       });
 
+      
+
         this._service.getAllusers().subscribe(data=>{
           console.log(data,"this are users");
           this.selectusers = data;
@@ -84,7 +86,12 @@ export class ProjectsComponent implements OnInit {
     }
  
 
-
+    clearProjects(){
+      this._service.getAllprojects().subscribe(data =>{
+        console.log(data,"this nis wht i want.....");
+        this.getprojects=data;
+      });
+    }
   
   
   // addprojects(){
@@ -195,16 +202,40 @@ export class ProjectsComponent implements OnInit {
     // return str.join(' ');
   }
   
-  titleCaseWord1(str) {
+  // titleCaseWord1(str) {
+  //   console.log(str);
+  //   str = str.toLowerCase().split(' ');
+  //   for (var i = 0; i < str.length; i++) {
+  //     str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+  //   }
+  //   console.log('scs',str.join(' '));
+  //   this.addproject.description = str.join(' ');
+  //   // return str.join(' ');
+  // }
+
+  titleCaseWord3(str) {
     console.log(str);
     str = str.toLowerCase().split(' ');
     for (var i = 0; i < str.length; i++) {
       str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
     }
     console.log('scs',str.join(' '));
-    this.addproject.description = str.join(' ');
+    this.projectdetails.name = str.join(' ');
     // return str.join(' ');
   }
+
+  // titleCaseWord4(str) {
+  //   console.log(str);
+  //   str = str.toLowerCase().split(' ');
+  //   for (var i = 0; i < str.length; i++) {
+  //     str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+  //   }
+  //   console.log('scs',str.join(' '));
+  //   this.projectdetails.description = str.join(' ');
+  //   // return str.join(' ');
+  // }
+
+  
 
 
 

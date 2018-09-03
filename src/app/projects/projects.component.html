@@ -109,7 +109,7 @@
                                              'has-error': description.invalid && (description.dirty || description.touched),
                                             'has-success':description.valid && (description.dirty || description.touched)
                                             }">
-                                            <label>Project Description</label>
+                                            <label>Project Description *</label>
                                             <textarea 
                                             id="project_description" 
                                             name="proj-description" 
@@ -117,7 +117,7 @@
                                             rows="2"
                                             placeholder="Enter the Project Description" 
                                             [(ngModel)]="addproject.description" 
-                                            (ngModelChange)="titleCaseWord1(addproject.description)" 
+                                             
                                             required 
                                             minlength="5" 
                                             #description="ngModel"></textarea>
@@ -134,10 +134,12 @@
                                             class="btn btn-success" 
                                             (click)="newproject.hide()" 
                                             [disabled]="projectAddForm.invalid" 
-                                            style="margin-right: 15px;">Submit</button>
+                                            style="margin-right: 15px;color:black;    font-family: Bree serif;
+                                            font-size: 16px;">Submit</button>
                                     
                                             <button class="btn btn-danger" 
-                                            (click)="newproject.hide();$event.preventDefault()">Cancel</button>
+                                            (click)="newproject.hide();$event.preventDefault()" style="    font-family: Bree serif;
+                                            font-size: 16px;">Cancel</button>
                                         </div>
                                     </form>
                                 </div> 
@@ -258,43 +260,80 @@
     <div class="modal-header mymodal-header">
             <i class="icon-pencil"></i>
             <h3 class="modal-title">{{projectdetails.name}}<button type="button" class="close pull-right" 
-                aria-label="Close" (click)="modalRef.hide()">
+                aria-label="Close" (click)="modalRef.hide();clearProjects();">
                 <span aria-hidden="true">&times;</span>
                 </button></h3>
             
      </div>
-    <div class="modal-body" style=" height: 364px;">
+    <div class="modal-body" style="height: 247px;">
 
             <div class="portlet-body form">
                 <!-- <form #login="ngForm"></form> -->
-                    <!-- <form role="form" name="itemForm" class="form-horizontal form-row-seperated" ng-submit="ok(item)" novalidate> -->
-                        <div class="form-body">
-                                <div class="form-group" >
+                    <form #projectEdit="ngForm" (ngSubmit)="projectedited(projectdetails)">
+                        <!-- <div class="form-body"> -->
+                                <div class="form-group" [ngClass]="{
+                                    'has-error': pname.invalid && (pname.dirty || pname.touched),
+                                    'has-success':pname.valid && (pname.dirty || pname.touched)
+                                }" >
                                     <label class="col-lg-4 col-md-4 col-sm-4 control-label">Project Name<span class="required"> * </span></label>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
                                         <div class="input-group">
-                                            <input type="text" name="pname"  id="project_name" placeholder="Enter your name" maxlength="200" [(ngModel)]="projectdetails.name " class="form-control" />
-                                            <p class="help-block">This field is required</p>
+                                            <input type="text" 
+                                            name="pname" 
+                                            id="project_name" 
+                                            placeholder="Enter your name" 
+                                            maxlength="200" 
+                                            [(ngModel)]="projectdetails.name" required 
+                                            #pname="ngModel" 
+                                            (ngModelChange)="titleCaseWord3(projectdetails.name)" 
+                                            class="form-control" />
+                                            <div *ngIf="pname.errors && (pname.dirty||pname.touched)">
+                                            <p *ngIf="pname.errors.required && (pname.dirty||pname.touched)" 
+                                            class="help-block" style="color:#5f0b0bed">Project Name is required</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-        
-                                <div class="form-group">
-                                    <label class="col-lg-4 col-md-4 col-sm-4 control-label">Project Description</label>
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <div class="input-group">
-                                            <textarea id="project_description" type="text" class="form-control" [(ngModel)]="projectdetails.description " maxlength="225" rows="6" placeholder="Project Description"></textarea>
-                                        </div>
-                                     </div>
-                                </div>
-                        </div>
+                                <div class="form-group form-md-line-input"
+                                [ngClass]="{
+                                    'has-error': pdescription.invalid && (pdescription.dirty || pdescription.touched),
+                                   'has-success':pdescription.valid && (pdescription.dirty || pdescription.touched)
+                                   }">
+                                   <label class="col-lg-4 col-md-4 col-sm-4 control-label" style="    margin-top: 36px;">Project Description *</label>
+                                    <div class="col-lg-8 col-md-8 col-sm-8" style="    margin-top: 36px;
+                                    margin-bottom: 18px;">
+                                   <textarea 
+                                   id="project_description" 
+                                   name="proj-description" 
+                                   class="form-control" 
+                                   rows="2"
+                                   placeholder="Enter the Project Description" 
+                                   [(ngModel)]="projectdetails.description" 
+                                   required 
+                                   minlength="5" 
+                                   #pdescription="ngModel"></textarea>
+                                   <div *ngIf="pdescription.errors && (pdescription.dirty || pdescription.touched)">
+                                           <p *ngIf="pdescription.errors.required" 
+                                           style="color:#5f0b0bed">Project Description is Required</p>
+                                           <p *ngIf="pdescription.errors.minlength" 
+                                           style="color:#5f0b0bed">Description should be of min 5 characters long</p>
+                                       </div>
+                                   <!-- <span class="help-block">Enter the project description...</span> -->
+                               </div>
+                               </div>
+                                
+                        
                         <div class="form-actions center">
                             <div class="col-md-offset-4 col-md-8" style="margin-top:20px;">
-                                <button type="submit" type="submit" class="btn green" (click)="projectedited(projectdetails);modalRef.hide()">Submit</button>
-                                <button type="button" (click)="modalRef.hide()" class="btn default">Cancel</button>
+                                <button type="submit" type="submit" 
+                                class="btn green" 
+                                (click)="modalRef.hide();" [disabled]="projectEdit.invalid" style="margin: 10px 10px 0px 10px;">Submit</button>
+                                <button type="button" (click)="modalRef.hide();clearProjects();" class="btn default" style="margin: 10px 10px 0px 10px;">Cancel</button>
                             </div>
                         </div>
-                    <!-- </form> -->
+                    <!-- </div> -->
+                    </form>
+                   
                 </div>
         </div>
 </ng-template>

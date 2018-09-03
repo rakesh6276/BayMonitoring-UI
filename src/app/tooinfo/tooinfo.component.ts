@@ -113,7 +113,7 @@ export class TooinfoComponent implements OnInit {
 
 
 
-  setTimeout(()=> {
+  // setTimeout(()=> {
 
 
 
@@ -142,9 +142,9 @@ export class TooinfoComponent implements OnInit {
     cb(start, end);
     
 
-},1000);
+// },1000);
 
-setTimeout(function(){
+// setTimeout(function(){
 
 
 
@@ -157,7 +157,7 @@ $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
 }.bind(this));
 
 
-}.bind(this),1000); 
+// }.bind(this),1000); 
 
 
 

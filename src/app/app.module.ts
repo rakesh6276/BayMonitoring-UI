@@ -38,8 +38,6 @@ import { ReporttableComponent } from './reporttable/reporttable.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { UsersComponent } from './users/users.component';
 import { LabtrendComponent } from './labtrend/labtrend.component';
-
-
 declare var jquery:any;
 declare var $ :any;
 

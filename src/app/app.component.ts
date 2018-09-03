@@ -2,6 +2,8 @@ import { Component, Input, OnInit, OnChanges, DoCheck } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

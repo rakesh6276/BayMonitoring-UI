@@ -43,7 +43,7 @@
                             <th>Group</th>
                             <th>Admin/Owner</th>
                             <th>Email</th>
-                            <th>Manage</th>
+                            <!-- <th>Manage</th> -->
                         </tr>
                         </thead>
                         <tbody>
@@ -57,9 +57,9 @@
                             <td>{{ user.group }}</td>
                             <td>{{ user.is_admin }}</td>
                             <td>{{ user.email}}</td>
-                            <td>
+                            <!-- <td>
                                 <span class="btn btn-outline btn-circle btn-sm green"  ng-click="editUser(user)"><i class="fa fa-edit"></i> Edit</span>
-                            </td>
+                            </td> -->
                         </tr>
                         </tbody>
                     </table>
@@ -220,7 +220,8 @@
                                 class="btn btn-success" 
                                 [disabled]="heroForm.invalid"
                                 (click)="newuser.hide();heroForm.rest()"
-                                 style="margin-right: 15px;">Submit</button>
+                                 style="margin-right: 15px;color:black;font-family: Bree serif;
+                                 font-size: 16px;">Submit</button>
         
                                 <button class="btn btn-danger" (click)="newuser.hide();$event.preventDefault();">Cancel</button>
                             </div>

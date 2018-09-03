@@ -318,7 +318,7 @@ callDateApply1 (trend){
     //  console.log(trend);
      let trend2:object;
      trend2={startDate:this.start.format('YYYY-MM-DD'),endDate:this.end.format('YYYY-MM-DD')}
-     let downloadurl1 = 'http://152.135.122.61:8871/api/export_tool_xls/?start_date=' + this.start.format('YYYY-MM-DD') +'&end_date='+ this.end.format('YYYY-MM-DD');
+     let downloadurl1 = 'http://14.141.47.12:8871/api/export_tool_xls/?start_date=' + this.start.format('YYYY-MM-DD') +'&end_date='+ this.end.format('YYYY-MM-DD');
      window.open(downloadurl1);
     //  this._service.sendDateGetReprts(trend2).subscribe(data=>{
     //   //window.open(downloadurl1);
@@ -328,7 +328,7 @@ callDateApply1 (trend){
     // console.log(trend);
     console.log('inside selective picker download',trend)
     // let downloadurl2 = 'http://127.0.0.1:8000/api/export_tool_xls/?start_date=' + trend.startDate +'&end_date='+ trend.endDate;
-    let downloadurl2 = 'http://152.135.122.61:8871/api/export_tool_xls/?start_date=' + trend.startDate +'&end_date='+ trend.endDate;
+    let downloadurl2 = 'http://14.141.47.12:8871/api/export_tool_xls/?start_date=' + trend.startDate +'&end_date='+ trend.endDate;
     window.open(downloadurl2);
     // this._service.sendDateGetReprts(trend).subscribe(data=>{
     //   //window.open(downloadurl2);
@@ -421,7 +421,7 @@ callDateApply3(trend){
     //  console.log(trend);
      let trend2:object;
      trend2={startDate:this.start.format('YYYY-MM-DD'),endDate:this.end.format('YYYY-MM-DD')}
-     let downloadurl1 = 'http://152.135.122.61:8871/api/export_project_xls/?start_date=' + this.start.format('YYYY-MM-DD') +'&end_date='+ this.end.format('YYYY-MM-DD');
+     let downloadurl1 = 'http://14.141.47.12:8871/api/export_project_xls/?start_date=' + this.start.format('YYYY-MM-DD') +'&end_date='+ this.end.format('YYYY-MM-DD');
      window.open(downloadurl1);
     //  this._service.sendDateGetReprts(trend2).subscribe(data=>{
     //   //window.open(downloadurl1);
@@ -431,7 +431,7 @@ callDateApply3(trend){
     // console.log(trend);
     console.log('inside selective picker download',trend)
     // let downloadurl2 = 'http://127.0.0.1:8000/api/export_tool_xls/?start_date=' + trend.startDate +'&end_date='+ trend.endDate;
-    let downloadurl2 = 'http://152.135.122.61:8871/api/export_project_xls/?start_date=' + trend.startDate +'&end_date='+ trend.endDate;
+    let downloadurl2 = 'http://14.141.47.12:8871/api/export_project_xls/?start_date=' + trend.startDate +'&end_date='+ trend.endDate;
     window.open(downloadurl2);
     }
   }
@@ -451,7 +451,7 @@ callDateApply3(trend){
       //  console.log(trend);
        let trend2:object;
        trend2={startDate:this.start.format('YYYY-MM-DD'),endDate:this.end.format('YYYY-MM-DD')}
-       let downloadurl1 = 'http://152.135.122.61:8871/api/export_tools/'+id+'?start_date=' + this.start.format('YYYY-MM-DD') +'&end_date='+ this.end.format('YYYY-MM-DD');
+       let downloadurl1 = 'http://14.141.47.12:8871/api/export_tools/'+id+'?start_date=' + this.start.format('YYYY-MM-DD') +'&end_date='+ this.end.format('YYYY-MM-DD');
        window.open(downloadurl1);
       //  this._service.sendDateGetReprts(trend2).subscribe(data=>{
       //   //window.open(downloadurl1);
@@ -461,7 +461,7 @@ callDateApply3(trend){
       // console.log(trend);
       console.log('inside selective picker download',trend)
       //  let downloadurl2 = 'http://127.0.0.1:8000/api/export_tool_xls/?start_date=' + trend.startDate +'&end_date='+ trend.endDate;
-      let downloadurl2 = 'http://152.135.122.61:8871/api/export_tools/'+id+'?start_date=' + this.start.format('YYYY-MM-DD') +'&end_date='+ this.end.format('YYYY-MM-DD');
+      let downloadurl2 = 'http://14.141.47.12:8871/api/export_tools/'+id+'?start_date=' + this.start.format('YYYY-MM-DD') +'&end_date='+ this.end.format('YYYY-MM-DD');
       window.open(downloadurl2);
       }
     }

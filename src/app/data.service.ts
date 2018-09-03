@@ -9,13 +9,14 @@ import {IConsoles} from "./dashboardhome/consolesInterface"
 import { CookieService } from 'ngx-cookie-service';
 
 
+
 @Injectable()
 export class DataService {
 
 
-  //apiRoot: string = "http://152.135.122.61:8871";
+  //apiRoot: string = "http://14.141.47.12:8871";
 
-  apiRoot: string = "http://152.135.122.61:8871";
+  apiRoot: string = "http://14.141.47.12:8871";
   
   //apiRoot: string = "http://127.0.0.1:8000";
 
@@ -24,7 +25,8 @@ export class DataService {
 
   
 
-constructor(private http:HttpClient,private cookie:CookieService) {
+constructor(private http:HttpClient,private cookie:CookieService
+){
 }
   
    
@@ -45,6 +47,7 @@ constructor(private http:HttpClient,private cookie:CookieService) {
 
 
     getTools():Observable<any>{
+      
     return this.http.get(this.apiRoot+'/api/test_tool_list/').map((response:Response)=>{
         return response;
       }).catch(this.handleError);
